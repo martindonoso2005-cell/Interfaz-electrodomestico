@@ -3,84 +3,266 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interfaces de un Electrodoméstico</title>
+    <title>Interfaces de un Electrodoméstico - Retro Pixel</title>
+
+    <!-- Fuente Retro Pixel Art -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            --pixel-yellow: #ffcc00;
+            --pixel-cyan: #00f0ff;
+            --ui-dark: rgba(14, 16, 27, 0.92);
+            --ui-border: #000000;
+            --text-main: #f4f4f4;
+            --shadow-block: 4px 4px 0px #000000;
+            --shadow-block-lg: 6px 6px 0px #000000;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            image-rendering: pixelated;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #f4f6f9;
-            color: #333333;
+            font-family: 'Press Start 2P', monospace;
+            background-color: #04040c;
+            color: var(--text-main);
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 2rem 1rem;
+            padding: 2.5rem 1rem 4rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Fondo de la Nebulosa Carina en Pixel Art */
+        #spaceCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            image-rendering: pixelated;
+            image-rendering: crisp-edges;
         }
 
         header {
             text-align: center;
             margin-bottom: 2rem;
+            max-width: 900px;
         }
 
+        /* Título pixel art amarillo */
         h1 {
-            font-size: 2rem;
-            color: #1a202c;
-            letter-spacing: -0.5px;
-            font-weight: 700;
+            font-family: 'Press Start 2P', monospace !important;
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--pixel-yellow) !important;
+            text-shadow: 3px 3px 0px #000000 !important;
+            letter-spacing: -0.05em;
         }
 
         .container {
             max-width: 1100px;
             width: 100%;
-            background: #ffffff;
+            background: var(--ui-dark);
             padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border: 4px solid var(--ui-border);
+            box-shadow: var(--shadow-block-lg);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            backdrop-filter: blur(4px);
+        }
+
+        .window-header {
+            width: 100%;
+            background: #090a14;
+            border-bottom: 4px solid var(--ui-border);
+            padding: 0.5rem 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.2rem;
+        }
+
+        .window-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border: 1px solid #000;
+        }
+        .dot.red { background: #ff0055; }
+        .dot.yellow { background: var(--pixel-yellow); }
+        .dot.green { background: #00ff66; }
+
+        .window-title {
+            font-size: 0.55rem;
+            color: var(--pixel-cyan);
+            text-shadow: 1px 1px 0px #000;
         }
 
         .image-wrapper {
             width: 100%;
             display: flex;
             justify-content: center;
+            background: #000000;
+            border: 3px solid var(--ui-border);
+            box-shadow: var(--shadow-block);
+            padding: 0.5rem;
         }
 
         .image-wrapper img {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
             display: block;
             object-fit: contain;
         }
 
         @media (max-width: 600px) {
             h1 {
-                font-size: 1.5rem;
+                font-size: 0.85rem;
+                line-height: 1.5;
             }
             .container {
-                padding: 0.75rem;
+                padding: 0.8rem;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Lienzo del fondo cósmico -->
+    <canvas id="spaceCanvas"></canvas>
+
     <header>
-        <h1>Interfaces de un Electrodoméstico</h1>
+        <h1>INTERFACES DE UN ELECTRODOMÉSTICO</h1>
     </header>
 
     <main class="container">
+        <div class="window-header">
+            <div class="window-dots">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <span class="window-title">SCHEMATIC - VIEW</span>
+        </div>
         <div class="image-wrapper">
             <img src="Gemini_Generated_Image_6x55oi6x55oi6x55.png" alt="Ficha técnica de interfaces del hervidor eléctrico">
         </div>
     </main>
 
+    <script>
+        /* ========================================================
+           GENERADOR PIXEL ART DE LA NEBULOSA CARINA (JWST)
+           ======================================================== */
+        const canvas = document.getElementById('spaceCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const W = 320;
+        const H = 180;
+        canvas.width = W;
+        canvas.height = H;
+
+        function renderNebula() {
+            // 1. Cielo espacial profundo
+            const skyGrad = ctx.createLinearGradient(0, 0, 0, H * 0.7);
+            skyGrad.addColorStop(0, '#04040c');
+            skyGrad.addColorStop(0.3, '#08112b');
+            skyGrad.addColorStop(0.7, '#0f3254');
+            skyGrad.addColorStop(1, '#1b5a7a');
+            ctx.fillStyle = skyGrad;
+            ctx.fillRect(0, 0, W, H);
+
+            // 2. Gas y polvo cósmico
+            for (let i = 0; i < 400; i++) {
+                const x = Math.floor(Math.random() * W);
+                const y = Math.floor(Math.random() * (H * 0.65));
+                ctx.fillStyle = Math.random() > 0.4 ? 'rgba(34, 130, 175, 0.25)' : 'rgba(235, 130, 60, 0.15)';
+                ctx.fillRect(x, y, 2, 2);
+            }
+
+            // 3. Estrellas con picos de difracción del James Webb
+            const webbStars = [
+                {x: 60, y: 35, s: 2, c: '#ffed75'},
+                {x: 240, y: 40, s: 3, c: '#ffffff'},
+                {x: 180, y: 20, s: 1, c: '#8cedff'},
+                {x: 290, y: 70, s: 2, c: '#ffc857'},
+                {x: 120, y: 65, s: 1, c: '#ffffff'},
+                {x: 30, y: 80, s: 1, c: '#ffaa44'}
+            ];
+
+            webbStars.forEach(st => {
+                ctx.fillStyle = st.c;
+                ctx.fillRect(st.x - st.s, st.y - st.s, st.s * 2, st.s * 2);
+                for (let r = 1; r <= st.s * 4; r++) {
+                    ctx.fillRect(st.x + r, st.y, 1, 1);
+                    ctx.fillRect(st.x - r, st.y, 1, 1);
+                    ctx.fillRect(st.x, st.y + r, 1, 1);
+                    ctx.fillRect(st.x - r, st.y, 1, 1);
+                    if (r % 2 === 0) {
+                        ctx.fillRect(st.x + r/2, st.y + r/2, 1, 1);
+                        ctx.fillRect(st.x - r/2, st.y - r/2, 1, 1);
+                        ctx.fillRect(st.x + r/2, st.y - r/2, 1, 1);
+                        ctx.fillRect(st.x - r/2, st.y + r/2, 1, 1);
+                    }
+                }
+            });
+
+            // Micro estrellas de fondo
+            for (let s = 0; s < 120; s++) {
+                ctx.fillStyle = Math.random() > 0.3 ? '#ffffff' : '#ffd085';
+                ctx.fillRect(Math.floor(Math.random() * W), Math.floor(Math.random() * (H * 0.7)), 1, 1);
+            }
+
+            // 4. Riscos dorados de la Nebulosa Carina
+            function getMountainHeight(x) {
+                return Math.sin(x * 0.02) * 18 + 
+                       Math.cos(x * 0.05) * 10 + 
+                       Math.sin(x * 0.1) * 4 + 
+                       (H * 0.52);
+            }
+
+            for (let x = 0; x < W; x++) {
+                const peakY = Math.floor(getMountainHeight(x));
+                for (let y = peakY; y < H; y++) {
+                    const depth = y - peakY;
+                    if (depth === 0) {
+                        ctx.fillStyle = (x % 3 === 0) ? '#fff5cc' : '#fca311';
+                    } else if (depth < 4) {
+                        ctx.fillStyle = '#e85d04';
+                    } else if (depth < 10) {
+                        ctx.fillStyle = '#dc2f02';
+                    } else if (depth < 22) {
+                        ctx.fillStyle = '#9d0208';
+                    } else if (depth < 45) {
+                        ctx.fillStyle = '#370617';
+                    } else {
+                        ctx.fillStyle = '#140207';
+                    }
+
+                    if (depth === 2 || depth === 6 || depth === 14 || depth === 28) {
+                        if ((x + y) % 2 === 0) ctx.fillStyle = '#03071e';
+                    }
+
+                    ctx.fillRect(x, y, 1, 1);
+                }
+            }
+        }
+
+        renderNebula();
+    </script>
 </body>
 </html>
