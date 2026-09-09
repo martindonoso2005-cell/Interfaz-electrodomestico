@@ -1,4 +1,4 @@
-# Entrega 1: Lámina de Análisis de Interfaces de Electrodoméstico
+# Entrega 1: Lámina de Análisis — Interfaces de un Electrodoméstico
 **Asignatura:** Taller de Interfaces (2026) | Universidad Adolfo Ibáñez  
 **Estudiante:** Martín Donoso  
 **Profesor:** Jorge Forero  
@@ -6,44 +6,60 @@
 
 ---
 
-## 1. Producto Seleccionado
-* **Objeto:** [Nombre del electrodoméstico, ej. Cafetera Eléctrica / Horno Microondas / Tostadora]
-* **Marca y Modelo:** [Ej. Oster Prima Latte / Moulinex Subito]
-* **Contexto de uso:** Electrodoméstico de encimera en entorno doméstico/cocina, orientado a la manipulación directa y rápida por parte del usuario mediante ciclos automatizados de preparación o cocción.
+## 1. Producto Seleccionado y Contexto de Uso
+* **Objeto:** Hervidor Eléctrico Digital (Modelo Genérico con Control Térmico).
+* **Función Principal:** Ebullición y control térmico programable de agua para consumo doméstico mediante resistencia eléctrica.
+* **Contexto de Uso:** Superficie de trabajo en cocina/encimera. Interacción orientada a ciclos rápidos, segura ante altas temperaturas y con retroalimentación clara en tiempo real.
+
+---
 
 ## 2. Clasificación de Interfaces
 
-### Interfaces de Entrada (Inputs)
-* **Pulsadores / Botones de acción:**  
-  * *Tipología:* **Física**  
-  * *Función:* Cierre mecánico de circuito para ordenar el inicio de ciclo o selección de modo.
-* **Perilla selectora / Dial rotatorio:**  
-  * *Tipología:* **Física / Gráfica**  
-  * *Función:* Ajuste progresivo de temporización, intensidad o selección de programas mediante marcas impresas en relieve.
-* **Mecanismo de apertura / Palanca:**  
-  * *Tipología:* **Física**  
-  * *Función:* Bloqueo y desbloqueo mecánico del compartimiento de carga con seguro de interrupción eléctrica.
+A continuación se detalla la matriz de entradas (*inputs*) y salidas (*outputs*) modeladas en el análisis, clasificadas según su tipología:
 
-### Interfaces de Salida (Outputs)
-* **Indicadores LED de estado / Pantalla digital:**  
-  * *Tipología:* **Gráfica / Visual**  
-  * *Función:* Retroalimentación lumínica que comunica encendido (rojo/verde), temporizador restante o advertencia de error.
-* **Señal acústica (Buzzer / Beep):**  
-  * *Tipología:* **Acústica / Audio**  
-  * *Función:* Alerta sonora omnidireccional que notifica la finalización del ciclo o la necesidad de retiro del alimento.
-* **Generación de calor / Movimiento mecánico:**  
-  * *Tipología:* **Física (Térmica / Motora)**  
-  * *Función:* Trabajo efectivo del artefacto (ebullición, giro de plato, resistencia radiante) perceptible de forma táctil o ambiental.
+| Tipo de Interfaz | Entradas (Inputs del Usuario / Sistema) | Salidas (Outputs del Producto) |
+| :--- | :--- | :--- |
+| **Física** | • Botón de encendido / apagado.<br>• Selector de temperatura (ajuste térmico).<br>• Botón / pulsador indicador de nivel de agua.<br>• Tapa de apertura fácil (accionamiento mecánico). | • Calor transferido al agua (resistencia térmica).<br>• Evaporación y disipación de calor.<br>• Flujo / vertido de agua caliente hacia el exterior. |
+| **Visual / Gráfica** | • Referencias gráficas y marcas serigrafiadas en el panel de control. | • Pantalla LCD con lectura de temperatura actual.<br>• Pantalla LCD con visualización de temperatura seleccionada / final.<br>• Luz indicadora LED de encendido/operación.<br>• Agua hirviendo y burbujeo visible a través del cuerpo/visor. |
+| **Acústica / Audio** | • *(No aplica input acústico directo en modelos manuales)*. | • Señal acústica (*bip*) de inicio de ciclo.<br>• Sonido natural de ebullición del agua.<br>• Señal acústica (*bip*) al alcanzar la temperatura programada / ebullición. |
 
-## 3. Lámina Gráfica
-> Lámina de alta resolución con la diagramación de conectores, inputs y outputs:
+---
 
-![Lámina de Análisis de Interfaces](assets/lamina_alta_resolucion.png)
+## 3. Diagrama de Flujo de Interacción
 
-*Nota: La lámina interactiva completa y su desarrollo visual pueden revisarse en:*  
-👉 [https://martindonoso2005-cell.github.io/Interfaz-electrodomestico/](https://martindonoso2005-cell.github.io/Interfaz-electrodomestico/)
+El siguiente diagrama modela la secuencia operativa entre las acciones del usuario y las respuestas automáticas del sistema:
 
-## 4. Recursos y Herramientas
-* **Registro fotográfico y retoque:** Fotografía digital propia / Edición en Photoshop o Figma.
-* **Diagramación y jerarquía visual:** Illustrator / Figma.
-* **Despliegue web:** HTML5, CSS3 y GitHub Pages.
+```text
+[ INICIO ]
+    │
+    ▼
+[ 1. Conectar a la red eléctrica (Input Físico) ]
+    │
+    ▼
+[ 2. Abrir tapa y cargar agua (Input Físico) ]
+    │
+    ▼
+[ 3. Seleccionar temperatura deseada y pulsar Encendido (Input Físico) ]
+    │
+    ├─► Feedback Inmediato: Bip sonoro inicial (Output Acústico)
+    ├─► Feedback Visual: Luz LED activa + Pantalla LCD muestra temp. objetivo
+    │
+    ▼
+[ 4. Fase de calentamiento en curso ]
+    │
+    ├─► Output Físico: Transferencia de calor por resistencia
+    ├─► Output Visual: LCD actualiza temperatura en tiempo real + Burbujeo
+    ├─► Output Acústico: Sonido progresivo de ebullición
+    │
+    ▼
+[ 5. El agua alcanza la temperatura programada ]
+    │
+    ├─► Output Acústico: Bip sonoro de finalización / corte
+    ├─► Output Visual: LCD confirma temperatura final; Luz LED cambia o se apaga
+    ├─► Output Físico: Corte térmico automático (paro de resistencia)
+    │
+    ▼
+[ 6. Servir agua caliente a través de la boquilla (Output Físico) ]
+    │
+    ▼
+[ FIN ]
