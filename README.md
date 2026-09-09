@@ -1,4 +1,4 @@
-# Entrega 1: Lámina de Análisis — Interfaces de un Electrodoméstico
+# Lámina de Análisis — Interfaces de un Electrodoméstico
 **Asignatura:** Taller de Interfaces (2026) | Universidad Adolfo Ibáñez  
 **Estudiante:** Martín Donoso  
 **Profesor:** Jorge Forero  
